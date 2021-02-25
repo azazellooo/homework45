@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class Task(models.Model):
     status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'), ('done', 'Сделано')]
     description = models.CharField(max_length=160, null=False, blank=False)
     status = models.CharField(max_length=100, choices=status_choices, default='new')
-    date = models.DateField(null=True)
+    date = models.DateField(null=True, blank=True)
+
 
     class Meta:
         db_table = 'tasks'
