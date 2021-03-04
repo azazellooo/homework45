@@ -2,20 +2,23 @@
 {% block title %}задача{% endblock title %}
 {%  block content %}
     <div class="jumbotron jumbotron-fluid" style="background-color: #f8f1f1">
-      <div class="container">
-          <a href="{% url "task-list" %}" style="color: #b088f9">вернуться к списку задач</a>
-        <h1 class="display-4">Задача № {{ task.id }}</h1>
-        <p class="lead">Статус: {{ task.status }}</p>
-          {% if not task.text %}
+        <div class="container">
+            <a href="{% url "task-list" %}" style="color: #b088f9">вернуться к списку задач</a>
+            <h1 class="display-4">Задача № {{ task.id }}</h1>
+            <h2>{{ task.description }}</h2>
+            <p class="lead">Статус: {{ task.status }}</p>
+            {% if not task.text %}
               <p></p>
-          {% else %}
+            {% else %}
               <p class="lead">{{ task.text }}</p>
-          {% endif%}
-          {% if not task.date %}
+            {% endif%}
+            {% if not task.date %}
               <p></p>
-          {% else %}
+            {% else %}
               <p class="lead">Дата: {{ task.date }}</p>
-          {% endif %}
-      </div>
+            {% endif %}
+            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "task-update" task.id %}">Редактировать задачу</a></h4>
+            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "task-delete" task.id %}">Удалить</a></h4>
+        </div>
     </div>
 {%  endblock content %}
